@@ -1,0 +1,1 @@
+var taxi = $('#taxi');

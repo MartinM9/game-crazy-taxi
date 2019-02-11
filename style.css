@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    height: 800px;
+    width: 600px;
+    border: 1px solid black;
+    position: relative;
+}
+
+#taxi {
+    width: 50px;
+    height: 50px;
+    background-color: #3d3dfd;
+    position: absolute;
+    bottom: 0;
+}
