@@ -27,3 +27,15 @@ body {
     background-color: #ffff6d;
     position: absolute;
 }
+
+#car1 {
+    top: -50px;
+}
+
+#car2 {
+    top:  -150px;
+}
+
+#car3 {
+    top: -250px;
+}

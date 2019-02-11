@@ -29,7 +29,6 @@ var myTaxi = {
 
 $('body').keydown(function(e) {
     var position = taxi.position();
-    timer();
     if(e.keyCode == 38 && position.top > 0 ) {
         myTaxi.moveUp(position);
     } else if (e.keyCode == 40 && position.top < (containerHeight - taxiHeight)) {
@@ -41,12 +40,12 @@ $('body').keydown(function(e) {
     }
 })
 
-var speed = 10;
+var speed = 20;
 
 function car_down(car) {
     var car_current_top = parseInt(car.css('top'));
     if (car_current_top > containerHeight) {
-        car_current_top = -200;
+        car_current_top = - 20;
         var car_left = parseInt(Math.random() * (containerWidth - taxiWidth));
         car.css('left', car_left);
     }
@@ -58,5 +57,7 @@ function timer() {
         car_down(car1);
         car_down(car2);
         car_down(car3);
-    }, 500);
+    }, 100);
 }
+
+timer();
