@@ -1,6 +1,9 @@
 // Selectors
 var taxi = $('#taxi');
 var container = $('#container');
+var car1 = $('#car1');
+var car2 = $('#car2');
+var car3 = $('#car3');
 
 // Declaring the height and the weight of the taxi and container
 var taxiWidth = parseInt(taxi.width());
@@ -26,7 +29,7 @@ var myTaxi = {
 
 $('body').keydown(function(e) {
     var position = taxi.position();
-
+    timer();
     if(e.keyCode == 38 && position.top > 0 ) {
         myTaxi.moveUp(position);
     } else if (e.keyCode == 40 && position.top < (containerHeight - taxiHeight)) {
@@ -37,3 +40,23 @@ $('body').keydown(function(e) {
         myTaxi.moveRight(position);
     }
 })
+
+var speed = 10;
+
+function car_down(car) {
+    var car_current_top = parseInt(car.css('top'));
+    if (car_current_top > containerHeight) {
+        car_current_top = -200;
+        var car_left = parseInt(Math.random() * (containerWidth - taxiWidth));
+        car.css('left', car_left);
+    }
+    car.css('top', car_current_top + speed);
+}
+
+function timer() {
+    setInterval(() => {
+        car_down(car1);
+        car_down(car2);
+        car_down(car3);
+    }, 500);
+}
