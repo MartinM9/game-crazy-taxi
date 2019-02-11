@@ -10,7 +10,6 @@ var containerHeight = parseInt(container.height());
 
 var myTaxi = {
     name: 'Crazy Taxi',
-    position: taxi.position(),
     moveUp: function (pos) {
         taxi.css('top', pos.top - 20 + 'px');
     },
@@ -26,14 +25,15 @@ var myTaxi = {
 }
 
 $('body').keydown(function(e) {
-    
-    if(e.keyCode == 38 && myTaxi.position.top > 0 ) {
-        myTaxi.moveUp(myTaxi.position);
-    } else if (e.keyCode == 40 && myTaxi.position.top < (containerHeight - taxiHeight)) {
-        myTaxi.moveDown(myTaxi.position);
-    } else if (e.keyCode == 37 && myTaxi.position.left > 0) {
-        myTaxi.moveLeft(myTaxi.position);
-    } else if (e.keyCode == 39 && myTaxi.position.left < (containerWidth - taxiWidth)) {
-        myTaxi.moveRight(myTaxi.position);
+    var position = taxi.position();
+
+    if(e.keyCode == 38 && position.top > 0 ) {
+        myTaxi.moveUp(position);
+    } else if (e.keyCode == 40 && position.top < (containerHeight - taxiHeight)) {
+        myTaxi.moveDown(position);
+    } else if (e.keyCode == 37 && position.left > 0) {
+        myTaxi.moveLeft(position);
+    } else if (e.keyCode == 39 && position.left < (containerWidth - taxiWidth)) {
+        myTaxi.moveRight(position);
     }
 })
