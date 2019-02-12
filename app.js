@@ -43,13 +43,13 @@ $('body').keydown(function(e) {
 var speed = 20;
 
 function car_down(car) {
-    var car_current_top = parseInt(car.css('top'));
-    if (car_current_top > containerHeight) {
-        car_current_top = - 20;
-        var car_left = parseInt(Math.random() * (containerWidth - taxiWidth));
-        car.css('left', car_left);
+    var carCurrentTop = parseInt(car.css('top'));
+    if (carCurrentTop > containerHeight) {
+        carCurrentTop = - 20;
+        var carPositionX = parseInt(Math.random() * (containerWidth - taxiWidth));
+        car.css('left', carPositionX);
     }
-    car.css('top', car_current_top + speed);
+    car.css('top', carCurrentTop + speed);
 }
 
 function timer() {
@@ -57,7 +57,7 @@ function timer() {
         car_down(car1);
         car_down(car2);
         car_down(car3);
-    }, 100);
+    }, 50);
 }
 
 timer();
