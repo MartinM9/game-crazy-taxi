@@ -7,39 +7,27 @@ body {
 }
 
 #container {
-    height: 800px;
-    width: 600px;
+    height: 80vh;
+    width: 800px;
     border: 1px solid black;
     position: relative;
     overflow: hidden;
 }
 
 #taxi {
-    width: 60px;
-    height: 60px;
-    background-color: #3d3dfd;
+    width: 100px;
+    height: 140px;
     position: absolute;
     bottom: 0;
+    background: url('taxi.svg');
+    background-size: cover;
 }
 
 .obstacles {
-    width: 60px;
-    height: 60px;
-    background-color: #ffff6d;
+    width: 100px;
+    height: 140px;
     position: absolute;
-}
-
-#car1 {
-    top: -50px;
-    left: 220px;
-}
-
-#car2 {
-    top:  -200px;
-    left: 50px;
-}
-
-#car3 {
-    top: -280px;
-    left: 400px;
+    background: url('obstacle.svg');
+    background-size: cover; 
+    transform: rotate(180deg);
 }
