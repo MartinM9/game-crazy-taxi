@@ -77,6 +77,8 @@ var myTaxi = {
   }
 };
 
+//hello
+
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
   if (e.keyCode == 38 && moveUpAnimation == false) {
