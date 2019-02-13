@@ -43,8 +43,8 @@ body {
 }
 
 #taxi {
-    width: 100px;
-    height: 140px;
+    width: 12%;
+    height: 12%;
     position: absolute;
     bottom: 0;
     background: url('taxi.svg');
@@ -52,10 +52,22 @@ body {
 }
 
 .obstacles {
-    width: 100px;
-    height: 140px;
+    width: 12%;
+    height: 12%;
     position: absolute;
     background: url('obstacle.svg');
     background-size: cover; 
     transform: rotate(180deg);
+}
+
+#car1 {
+    top: -10%;
+}
+
+#car2 {
+    top: -480px;
+}
+
+#car3 {
+    top: -890px;
 }

@@ -3,7 +3,7 @@ var taxi = $("#taxi");
 var container = $("#container");
 var speed = 2;
 var roadPosition = null;
-var steps = 7; // in px
+var steps = 10; // in px
 
 // Declaring the height and the weight of the taxi and container
 var taxiWidth = parseInt(taxi.width());
@@ -48,7 +48,6 @@ var myTaxi = {
 
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
-  var position = taxi.position();
   if (e.keyCode == 38 && moveUpAnimation == false) {
     moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
   } else if (e.keyCode == 40 && moveDownAnimation == false) {
@@ -60,6 +59,7 @@ $("body").keydown(function(e) {
   }
 });
 
+// Key listener on key up so the recursion of requestAnimationFrame can be stopped
 $("body").keyup(function(e) {
   if (e.keyCode == 38) {
     cancelAnimationFrame(moveUpAnimation);
@@ -83,7 +83,7 @@ function createObstacles() {
     var $enemyCar = $("<div/>").addClass("obstacles");
     $enemyCar.attr("id", "car" + [i]);
     $enemyCar.css("left", getEnemyRandomX());
-    $enemyCar.css("top", getEnemyRandomY(-100, -600));
+    // $enemyCar.css("top", getEnemyRandomY(-100, -600));
     $enemyCar.appendTo("#container");
     obstacles.push($enemyCar);
   }
@@ -103,17 +103,17 @@ function getEnemyRandomX() {
   return random;
 }
 
-// Random number on Y axis
-function getEnemyRandomY(min, max) {
-  var random = Math.floor(Math.random() * (max - min)) + min;
-  return random;
-}
+// // Random number on Y axis
+// function getEnemyRandomY(min, max) {
+//   var random = Math.floor(Math.random() * (max - min)) + min;
+//   return random;
+// }
 
 // Function for moving the obstacles from the top to the bottom
 function car_down(car) {
   var carCurrentTop = parseInt(car.css("top"));
   if (carCurrentTop > containerHeight) {
-    carCurrentTop = -steps;
+    carCurrentTop = car.css("top", -200);
     car.css("left", getEnemyRandomX);
   }
   car.css("top", carCurrentTop + speed);
