@@ -3,7 +3,7 @@ var taxi = $("#taxi");
 var container = $("#container");
 var speed = 2;
 var roadPosition = null;
-var steps = 20;// in px
+var steps = 5;// in px
 
 // Declaring the height and the weight of the taxi and container
 var taxiWidth = parseInt(taxi.width());
@@ -11,38 +11,65 @@ var taxiHeight = parseInt(taxi.height());
 var containerWidth = parseInt(container.width());
 var containerHeight = parseInt(container.height());
 
+var moveUpAnimation = false;
+var moveDownAnimation = false;
+var moveLeftAnimation = false;
+var moveRightAnimation = false;
+
 // Taxi movement declaration
 var myTaxi = {
   name: "Crazy Taxi",
-  moveUp: function(pos) {
-    taxi.css("top", pos.top - steps + "px");
-    move_up = requestAnimationFrame(moveUp);
+  moveUp: function() {
+    taxi.css("top", parseInt(taxi.css('top')) - steps);
+    moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
   },
-  moveDown: function(pos) {
-   taxi.css("top", pos.top + steps + "px");
+  moveDown: function() {
+   taxi.css("top", parseInt(taxi.css('top')) + steps);
+   moveDownAnimation = requestAnimationFrame(myTaxi.moveDown);
   },
-  moveLeft: function(pos) {
-    taxi.css("left", pos.left - steps + "px");
+  moveLeft: function() {
+    taxi.css("left", parseInt(taxi.css('left')) - steps);
+    moveLeftAnimation = requestAnimationFrame(myTaxi.moveLeft);
   },
-  moveRight: function(pos) {
-    taxi.css("left", pos.left + steps + "px");
+  moveRight: function() {
+    taxi.css("left", parseInt(taxi.css('left')) + steps);
+    moveRightAnimation = requestAnimationFrame(myTaxi.moveRight);
   }
 };
 
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
   var position = taxi.position();
-  if (e.keyCode == 38 && position.top > 0) {
-    myTaxi.moveUp(position);
-    move_up = requestAnimationFrame(moveUp);
-  } else if (e.keyCode == 40 && position.top < containerHeight - taxiHeight) {
-    myTaxi.moveDown(position);
-  } else if (e.keyCode == 37 && position.left > 0) {
-    myTaxi.moveLeft(position);
-  } else if (e.keyCode == 39 && position.left < containerWidth - taxiWidth) {
-    myTaxi.moveRight(position);
+  if (e.keyCode == 38 && position.top > 0 && moveUpAnimation == false) {
+    // myTaxi.moveUp(position);
+    moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
+  } else if (e.keyCode == 40 && position.top < containerHeight - taxiHeight && moveDownAnimation == false) {
+    // myTaxi.moveDown(position);
+    moveDownAnimation = requestAnimationFrame(myTaxi.moveDown);
+  } else if (e.keyCode == 37 && position.left > 0 && moveLeftAnimation == false) {
+    // myTaxi.moveLeft(position);
+    moveLeftAnimation = requestAnimationFrame(myTaxi.moveLeft);
+  } else if (e.keyCode == 39 && position.left < containerWidth - taxiWidth && moveRightAnimation == false) {
+    // myTaxi.moveRight(position);
+    moveRightAnimation = requestAnimationFrame(myTaxi.moveRight);
   }
 });
+
+$("body").keyup(function(e) {
+  if (e.keyCode == 38) {
+    cancelAnimationFrame(moveUpAnimation);
+    moveUpAnimation = false;
+  } else if (e.keyCode == 40) {
+    cancelAnimationFrame(moveDownAnimation);
+    moveDownAnimation = false;
+  } else if (e.keyCode == 37) {
+    cancelAnimationFrame(moveLeftAnimation);
+    moveLeftAnimation = false;
+  } else if (e.keyCode == 39) {
+    cancelAnimationFrame(moveRightAnimation);
+    moveRightAnimation = false;
+  }
+})
 
 // Function for creating enemy cars
 function createObstacles() {
