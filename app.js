@@ -112,14 +112,11 @@ function createObstacles() {
   var obstacles = [];
   for (let i = 1; i < 4; i++) {
    // var $enemyCar = $("<svg/>");
-   var $enemyCar = $(svgObstacle)
+   var $enemyCar = $(svgObstacle);
     $enemyCar.addClass("obstacles");
     $enemyCar.attr('id', 'car' + [i]);
-  //  $enemyCar[0].setAttributeNS(null, 'viewBox', '0 0 70 100');
     $enemyCar.css("left", getEnemyRandomX());
-    // $enemyCar.css("top", getEnemyRandomY(-100, -600));
     $enemyCar.appendTo("#container");
-    //$(svgObstacle).appendTo("#container");
     obstacles.push($enemyCar);
   }
   return obstacles;
@@ -137,12 +134,6 @@ function getEnemyRandomX() {
   var random = Math.floor(Math.random() * (containerWidth - taxiWidth));
   return random;
 }
-
-// // Random number on Y axis
-// function getEnemyRandomY(min, max) {
-//   var random = Math.floor(Math.random() * (max - min)) + min;
-//   return random;
-// }
 
 // Function for moving the obstacles from the top to the bottom
 function car_down(car) {
