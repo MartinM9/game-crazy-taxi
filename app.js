@@ -124,6 +124,8 @@ function createObstacles() {
   return obstacles;
 }
 
+///hasdfla;sdj
+
 createObstacles();
 var $obstacles = $(".obstacles");
 
