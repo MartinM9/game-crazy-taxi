@@ -2,16 +2,44 @@ body {
     height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: center;
     align-items: center;
+    background: url('background.jpg');
+    background-size: cover;
 }
 
 #container {
-    height: 80vh;
+    height: 85vh;
     width: 800px;
     border: 1px solid black;
     position: relative;
     overflow: hidden;
+    z-index: 10;
+    background: #fff;
+    margin: 0 auto;
+    background: url('road.svg');
+    background-size: contain;
+}
+
+#score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 350px;
+    background-color: rgba(214, 214, 214, 0.39);
+    justify-self: flex-start;
+    position: absolute;
+    left: 5%;
+}
+
+#score-container h1 {
+    font-size: 3em; 
+}
+
+#score {
+    margin: 30px 0;
+    font-size: 3em;
 }
 
 #taxi {
