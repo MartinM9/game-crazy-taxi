@@ -9,7 +9,7 @@ body {
 
 #container {
     height: 85vh;
-    width: 800px;
+    width: 30vw;
     border: 1px solid black;
     position: relative;
     overflow: hidden;
@@ -17,7 +17,7 @@ body {
     background: #fff;
     margin: 0 auto;
     background: url('road.svg');
-    background-size: auto;
+    background-size: contain;
 }
 
 #score-container {
@@ -25,8 +25,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
-    width: 350px;
+    height: 30%;
+    width: 15%;
     background-color: rgba(214, 214, 214, 0.39);
     justify-self: flex-start;
     position: absolute;
@@ -44,19 +44,13 @@ body {
 
 #taxi {
     width: 12%;
-    height: 12%;
     position: absolute;
     bottom: 0;
-    background: url('taxi.svg');
-    background-size: cover;
 }
 
 .obstacles {
     width: 12%;
-    height: 12%;
     position: absolute;
-    background: url('obstacle.svg');
-    background-size: cover; 
     transform: rotate(180deg);
 }
 
