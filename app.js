@@ -217,21 +217,18 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     gameOver();
-    
   };
   if(collisionDetection(positionTaxi, positionCar2)) { 
     stopRoad();
     stopTimer();
     stopScoreBoard();
     gameOver();
-    
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
     stopRoad();
     stopTimer();
     stopScoreBoard();
     gameOver();
-    
   };
 }
 
