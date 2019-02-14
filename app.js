@@ -1,3 +1,4 @@
+$(window).on("load", function() {
 // Selectors
 var taxi = $("#taxi");
 var container = $("#container");
@@ -168,13 +169,66 @@ function score() {
 
 window.setInterval(score, 200)
 window.setInterval(moveRoad, 10);
+var stopRoad = window.setInterval(moveRoad, 10);
+var startObstacles = null;
 
-function timer() {
-  setInterval(function() {
+var startTimer = function() {
+    startObstacles = setInterval(function() {
     car_down(car1);
     car_down(car2);
     car_down(car3);
+    checkCollision();
   }, 1);
 }
 
-timer();
+startTimer();
+
+var stopTimer = function() {
+  clearInterval(startObstacles);
+};
+var stopStreet = function(){
+  clearInterval(stopRoad);
+}
+
+function checkCollision(){
+  var positionTaxi = taxi.position();
+  var positionCar1 = car1.position();
+  var positionCar2 = car2.position();
+  var positionCar3 = car3.position();
+
+  positionTaxi.right = positionTaxi.left + taxi.width();
+  positionCar1.right = positionCar1.left + car1.width();
+  positionCar2.right = positionCar2.left + car2.width();
+  positionCar3.right = positionCar3.left + car3.width();
+
+  positionTaxi.bottom = positionTaxi.top + taxi.height();
+  positionCar1.bottom = positionCar1.top + car1.height();
+  positionCar2.bottom = positionCar2.top + car2.height();
+  positionCar3.bottom = positionCar3.top + car3.height();
+
+  if(collisionDetection(positionTaxi, positionCar1)) {
+    // alert("collision");
+    stopStreet();
+    stopTimer();
+  };
+  if(collisionDetection(positionTaxi, positionCar2)) {
+    // alert("collision"); 
+    stopStreet();
+    stopTimer();
+  };
+  if(collisionDetection(positionTaxi, positionCar3)) {
+    // alert("collision");
+    stopStreet();
+    stopTimer();
+
+  };
+}
+
+function collisionDetection (x,y){
+return !(x.right < y.left || 
+    x.left > y.right || 
+    x.bottom < y.top || 
+    x.top > y.bottom)
+}
+
+});
