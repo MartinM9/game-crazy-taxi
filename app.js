@@ -217,25 +217,21 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
-    // $('#game-over').css('display','flex');
+    
   };
   if(collisionDetection(positionTaxi, positionCar2)) { 
     stopRoad();
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
-    // $('#game-over').css('display','flex');
+    
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
     stopRoad();
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
-    // $('#game-over').css('display','flex');
-
+    
   };
 }
 
@@ -248,10 +244,10 @@ return !(x.right < y.left ||
 
 var gameOver = function(){
   $('#game-over').css('display','flex'); //add css
-  
   $('#btn-gameOver').click(function(){
     location.reload();
   })
+  $("body").off();
 }
 
 startTimer();
