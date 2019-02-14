@@ -47,33 +47,33 @@ var containerWidth = parseInt(container.width());
 var containerHeight = parseInt(container.height());
 
 // Request animation variables declaration
-var moveUpAnimation = false;
-var moveDownAnimation = false;
-var moveLeftAnimation = false;
-var moveRightAnimation = false;
+var moveUpAnimation = null;
+var moveDownAnimation = null;
+var moveLeftAnimation = null;
+var moveRightAnimation = null;
 
 // Taxi movement declaration
 var myTaxi = {
   name: "Crazy Taxi",
-  moveUp: function() {
+  moveUp: ()=> {
     if (parseInt(taxi.css("top")) > 0) {
       taxi.css("top", parseInt(taxi.css("top")) - steps);
       moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
     }
   },
-  moveDown: function() {
+  moveDown: ()=> {
     if (parseInt(taxi.css("top")) < containerHeight - taxiHeight) {
       taxi.css("top", parseInt(taxi.css("top")) + steps);
       moveDownAnimation = requestAnimationFrame(myTaxi.moveDown);
     }
   },
-  moveLeft: function() {
+  moveLeft: ()=> {
     if (parseInt(taxi.css("left")) > 0) {
       taxi.css("left", parseInt(taxi.css("left")) - steps);
       moveLeftAnimation = requestAnimationFrame(myTaxi.moveLeft);
     }
   },
-  moveRight: function() {
+  moveRight: ()=> {
     if (parseInt(taxi.css("left")) < containerWidth - taxiWidth) {
       taxi.css("left", parseInt(taxi.css("left")) + steps);
       moveRightAnimation = requestAnimationFrame(myTaxi.moveRight);
@@ -83,14 +83,14 @@ var myTaxi = {
 
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
-  if (e.keyCode == 38 && moveUpAnimation == false) {
-    moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
-  } else if (e.keyCode == 40 && moveDownAnimation == false) {
-    moveDownAnimation = requestAnimationFrame(myTaxi.moveDown);
-  } else if (e.keyCode == 37 && moveLeftAnimation == false) {
-    moveLeftAnimation = requestAnimationFrame(myTaxi.moveLeft);
-  } else if (e.keyCode == 39 && moveRightAnimation == false) {
-    moveRightAnimation = requestAnimationFrame(myTaxi.moveRight);
+  if (e.keyCode == 38) {
+    myTaxi.moveUp();
+  } else if (e.keyCode == 40) {
+    myTaxi.moveDown();
+  } else if (e.keyCode == 37) {
+    myTaxi.moveLeft();
+  } else if (e.keyCode == 39) {
+    myTaxi.moveRight();
   }
 });
 
@@ -98,16 +98,16 @@ $("body").keydown(function(e) {
 $("body").keyup(function(e) {
   if (e.keyCode == 38) {
     cancelAnimationFrame(moveUpAnimation);
-    moveUpAnimation = false;
+    // moveUpAnimation = false;
   } else if (e.keyCode == 40) {
     cancelAnimationFrame(moveDownAnimation);
-    moveDownAnimation = false;
+    // moveDownAnimation = false;
   } else if (e.keyCode == 37) {
     cancelAnimationFrame(moveLeftAnimation);
-    moveLeftAnimation = false;
+    // moveLeftAnimation = false;
   } else if (e.keyCode == 39) {
     cancelAnimationFrame(moveRightAnimation);
-    moveRightAnimation = false;
+    // moveRightAnimation = false;
   }
 });
 
@@ -244,6 +244,10 @@ var gameOver = function(){
   $('#btn-game-over').click(function(){
     location.reload();
   })
+  cancelAnimationFrame(moveRightAnimation);
+  cancelAnimationFrame(moveUpAnimation);
+  cancelAnimationFrame(moveDownAnimation);
+  cancelAnimationFrame(moveLeftAnimation);
   $("body").off();
 }
 
