@@ -1,9 +1,11 @@
 // Selectors
 var taxi = $("#taxi");
 var container = $("#container");
-var speed = 2;
+var speed = 1;
 var roadPosition = null;
-var steps = 15; // in px
+var steps = 15;
+var points = 1;
+
 
 var svgObstacle = `<svg viewBox="0 0 195 280" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -77,8 +79,6 @@ var myTaxi = {
   }
 };
 
-//hello
-
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
   if (e.keyCode == 38 && moveUpAnimation == false) {
@@ -124,8 +124,6 @@ function createObstacles() {
   return obstacles;
 }
 
-///hasdfla;sdj
-
 createObstacles();
 var $obstacles = $(".obstacles");
 
@@ -139,6 +137,7 @@ function getEnemyRandomX() {
   return random;
 }
 
+
 // Function for moving the obstacles from the top to the bottom
 function car_down(car) {
   var carCurrentTop = parseInt(car.css("top"));
@@ -151,10 +150,23 @@ function car_down(car) {
 
 // Function that makes the background Road repeat
 function moveRoad() {
-  roadPosition++;
+  var i = 3;
+  roadPosition += i;
+  if (points % 30 == 0) {
+    i += 3;
+  } 
   container.css({ backgroundPosition: "0 " + roadPosition + "px" });
 }
 
+function score() {
+  points++;
+  $('#score').html(points);
+  if (points % 50 == 0) {
+    speed++;
+  }  
+}
+
+window.setInterval(score, 200)
 window.setInterval(moveRoad, 10);
 
 function timer() {
