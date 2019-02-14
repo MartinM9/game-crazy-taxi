@@ -3,8 +3,8 @@ $(window).on("load", function() {
 var taxi = $("#taxi");
 var container = $("#container");
 var speed = 1;
-var roadPosition = null;
-var steps = 15;
+var roadPosition = 0;
+var steps = 20;
 var points = 1;
 
 
@@ -149,12 +149,13 @@ function car_down(car) {
   car.css("top", carCurrentTop + speed);
 }
 
+var i = 3;
+
 // Function that makes the background Road repeat
 function moveRoad() {
-  var i = 3;
   roadPosition += i;
-  if (points % 30 == 0) {
-    i += 3;
+  if (points % 50 == 0) {
+    i += 0.2;
   } 
   container.css({ backgroundPosition: "0 " + roadPosition + "px" });
 }
@@ -167,7 +168,7 @@ function score() {
   }  
 }
 
-var startScoreBoard = window.setInterval(score, 200)
+var startScoreBoard = window.setInterval(score, 150);
 var backgroundRoad = window.setInterval(moveRoad, 10);
 var startObstacles = null;
 
