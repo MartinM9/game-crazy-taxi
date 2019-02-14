@@ -217,7 +217,7 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
+    $("body").off();
     // $('#game-over').css('display','flex');
   };
   if(collisionDetection(positionTaxi, positionCar2)) { 
@@ -225,7 +225,7 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
+    $("body").off();
     // $('#game-over').css('display','flex');
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
@@ -233,7 +233,7 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     gameOver();
-    // $("body").off();
+    $("body").off();
     // $('#game-over').css('display','flex');
 
   };
