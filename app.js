@@ -6,6 +6,7 @@ var speed = 1;
 var roadPosition = 0;
 var steps = 20;
 var points = 1;
+var gameOver = false;
 
 
 var svgObstacle = `<svg viewBox="0 0 195 280" xmlns="http://www.w3.org/2000/svg">
@@ -160,6 +161,7 @@ function moveRoad() {
   container.css({ backgroundPosition: "0 " + roadPosition + "px" });
 }
 
+// Function that increases the score on screen
 function score() {
   points++;
   $('#score').html(points);
@@ -168,7 +170,10 @@ function score() {
   }  
 }
 
+
+// stop the game when crash occurs
 var startScoreBoard = window.setInterval(score, 150);
+
 var backgroundRoad = window.setInterval(moveRoad, 10);
 var startObstacles = null;
 
@@ -181,8 +186,6 @@ var startTimer = function() {
   }, 1);
 }
 
-
-
 var stopScoreBoard = ()=> clearInterval(startScoreBoard);
 var stopTimer = function() {
   clearInterval(startObstacles);
@@ -191,6 +194,7 @@ var stopRoad = function(){
   clearInterval(backgroundRoad);
 }
 
+// Funciton that checks for collision between taxi and other cars
 function checkCollision(){
   var positionTaxi = taxi.position();
   var positionCar1 = car1.position();
@@ -212,18 +216,21 @@ function checkCollision(){
     stopTimer();
     stopScoreBoard();
     $("body").off();
+    gameOver = true;
   };
   if(collisionDetection(positionTaxi, positionCar2)) { 
     stopRoad();
     stopTimer();
     stopScoreBoard();
     $("body").off();
+    gameOver = true;
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
     stopRoad();
     stopTimer();
     stopScoreBoard();
     $("body").off();
+    gameOver = true;
 
   };
 }
@@ -234,5 +241,15 @@ return !(x.right < y.left ||
     x.bottom < y.top || 
     x.top > y.bottom)
 }
+
+/*
+function gameOver(){
+  $('...').css() //add css
+  $('button start again').click(()=>{
+    location.reload();
+  })
+}
+*/
 startTimer();
+
 });
