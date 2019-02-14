@@ -241,7 +241,7 @@ return !(x.right < y.left ||
 
 var gameOver = function(){
   $('#game-over').css('display','flex'); //add css
-  $('#btn-gameOver').click(function(){
+  $('#btn-game-over').click(function(){
     location.reload();
   })
   $("body").off();
