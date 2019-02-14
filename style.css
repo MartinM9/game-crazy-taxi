@@ -5,6 +5,8 @@ body {
     align-items: center;
     background: url('background.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Faster One', cursive;
 }
 
 #container {
@@ -64,4 +66,25 @@ body {
 
 #car3 {
     top: -890px;
+}
+
+#game-over {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 39%;
+    z-index: 100;
+}
+
+#game-over-heading {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-family: 'Knewave', cursive;
+}
+
+#game-over img {
+    max-width: 100%;
+    width: 20vw;
+    height: auto;
 }
