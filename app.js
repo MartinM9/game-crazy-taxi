@@ -167,9 +167,8 @@ function score() {
   }  
 }
 
-window.setInterval(score, 200)
-window.setInterval(moveRoad, 10);
-var stopRoad = window.setInterval(moveRoad, 10);
+var startScoreBoard = window.setInterval(score, 200)
+var backgroundRoad = window.setInterval(moveRoad, 10);
 var startObstacles = null;
 
 var startTimer = function() {
@@ -181,13 +180,14 @@ var startTimer = function() {
   }, 1);
 }
 
-startTimer();
 
+
+var stopScoreBoard = ()=> clearInterval(startScoreBoard);
 var stopTimer = function() {
   clearInterval(startObstacles);
 };
-var stopStreet = function(){
-  clearInterval(stopRoad);
+var stopRoad = function(){
+  clearInterval(backgroundRoad);
 }
 
 function checkCollision(){
@@ -207,19 +207,22 @@ function checkCollision(){
   positionCar3.bottom = positionCar3.top + car3.height();
 
   if(collisionDetection(positionTaxi, positionCar1)) {
-    // alert("collision");
-    stopStreet();
+    stopRoad();
     stopTimer();
+    stopScoreBoard();
+    $("body").off();
   };
-  if(collisionDetection(positionTaxi, positionCar2)) {
-    // alert("collision"); 
-    stopStreet();
+  if(collisionDetection(positionTaxi, positionCar2)) { 
+    stopRoad();
     stopTimer();
+    stopScoreBoard();
+    $("body").off();
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
-    // alert("collision");
-    stopStreet();
+    stopRoad();
     stopTimer();
+    stopScoreBoard();
+    $("body").off();
 
   };
 }
@@ -230,5 +233,5 @@ return !(x.right < y.left ||
     x.bottom < y.top || 
     x.top > y.bottom)
 }
-
+startTimer();
 });
