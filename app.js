@@ -149,12 +149,12 @@ function car_down(car) {
   car.css("top", carCurrentTop + speed);
 }
 
+var k = 3;
 // Function that makes the background Road repeat
 function moveRoad() {
-  var i = 3;
-  roadPosition += i;
+  roadPosition += k;
   if (points % 30 == 0) {
-    i += 3;
+    k++;
   } 
   container.css({ backgroundPosition: "0 " + roadPosition + "px" });
 }
@@ -167,8 +167,8 @@ function score() {
   }  
 }
 
-window.setInterval(score, 200)
-window.setInterval(moveRoad, 10);
+window.setInterval(score, 200);
+window.setInterval(moveRoad, 700);
 var stopRoad = window.setInterval(moveRoad, 10);
 var startObstacles = null;
 
