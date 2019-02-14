@@ -194,6 +194,7 @@ var stopRoad = function(){
   clearInterval(backgroundRoad);
 }
 
+
 // Funciton that checks for collision between taxi and other cars
 function checkCollision(){
   var positionTaxi = taxi.position();
@@ -215,22 +216,25 @@ function checkCollision(){
     stopRoad();
     stopTimer();
     stopScoreBoard();
-    $("body").off();
-    gameOver = true;
+    gameOver();
+    // $("body").off();
+    // $('#game-over').css('display','flex');
   };
   if(collisionDetection(positionTaxi, positionCar2)) { 
     stopRoad();
     stopTimer();
     stopScoreBoard();
-    $("body").off();
-    gameOver = true;
+    gameOver();
+    // $("body").off();
+    // $('#game-over').css('display','flex');
   };
   if(collisionDetection(positionTaxi, positionCar3)) {
     stopRoad();
     stopTimer();
     stopScoreBoard();
-    $("body").off();
-    gameOver = true;
+    gameOver();
+    // $("body").off();
+    // $('#game-over').css('display','flex');
 
   };
 }
@@ -242,14 +246,14 @@ return !(x.right < y.left ||
     x.top > y.bottom)
 }
 
-/*
-function gameOver(){
-  $('...').css() //add css
-  $('button start again').click(()=>{
+var gameOver = function(){
+  $('#game-over').css('display','flex'); //add css
+  
+  $('#btn-gameOver').click(function(){
     location.reload();
   })
 }
-*/
+
 startTimer();
 
 });
