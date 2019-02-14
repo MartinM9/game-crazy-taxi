@@ -71,20 +71,42 @@ body {
 #game-over {
     display: none;
     position: absolute;
-    top: 40%;
-    left: 39%;
+    top: 0;
+    left: 0;
     z-index: 100;
+    font-family: 'Knewave', cursive;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(48, 48, 48, 0.438);
 }
 
 #game-over-heading {
-    font-size: 3em;
-    text-align: center;
+    font-size: 3.5em;
     margin-bottom: 1.5em;
-    font-family: 'Knewave', cursive;
 }
 
 #game-over img {
     max-width: 100%;
     width: 20vw;
     height: auto;
+}
+
+#btn {
+    display: block;
+    margin: 1.5em auto;
+    padding: 1% 3%;
+    font-family: 'Knewave', cursive;
+    font-size: 2em;
+    border-radius: 30px;
+    background-color: rgba(255, 252, 93, 0.8);
+    border: none;
+    transition: 0.5s;
+}
+
+#btn:hover {
+    background-color: rgba(255, 252, 93);
+    padding: 1.5% 4%;
 }
