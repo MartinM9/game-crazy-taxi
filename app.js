@@ -2,13 +2,20 @@ $(window).on("load", function() {
 // Selectors
 var taxi = $("#taxi");
 var container = $("#container");
+var leftBtn = $("#left");
+var rightBtn = $("#right");
+var speedSelector = $("#speed");
+
+// Declaration of variablees
 var speed = 1;
 var roadPosition = 0;
 var steps = 10;
 var points = 1;
 var gameOver = false;
+var roadIncrement = 3;
 
-
+// SVG for obstacles
+// --------------------------------------------------------------------------------------------------------------------------------------
 var svgObstacle = `<svg viewBox="0 0 195 280" xmlns="http://www.w3.org/2000/svg">
                         <g>
                         <title>background</title>
@@ -38,7 +45,7 @@ var svgObstacle = `<svg viewBox="0 0 195 280" xmlns="http://www.w3.org/2000/svg"
                         <rect id="svg_25" height="5.999878" width="20.249587" y="258.244737" x="149.62394" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff0000"/>
                         </g>
                       </svg>`
-
+// --------------------------------------------------------------------------------------------------------------------------------------
 
 // Declaring the height and the weight of the taxi and container
 var taxiWidth = parseInt(taxi.width());
@@ -47,10 +54,10 @@ var containerWidth = parseInt(container.width());
 var containerHeight = parseInt(container.height());
 
 // Request animation variables declaration
-var moveUpAnimation = null;
-var moveDownAnimation = null;
-var moveLeftAnimation = null;
-var moveRightAnimation = null;
+var moveUpAnimation = false;
+var moveDownAnimation = false;
+var moveLeftAnimation = false;
+var moveRightAnimation = false;
 
 // Taxi movement declaration
 var myTaxi = {
@@ -83,14 +90,14 @@ var myTaxi = {
 
 // Key listeners on arrow keys
 $("body").keydown(function(e) {
-  if (e.keyCode == 38) {
-    myTaxi.moveUp();
-  } else if (e.keyCode == 40) {
-    myTaxi.moveDown();
-  } else if (e.keyCode == 37) {
-    myTaxi.moveLeft();
-  } else if (e.keyCode == 39) {
-    myTaxi.moveRight();
+  if (e.keyCode == 38 && moveUpAnimation == false) {
+    moveUpAnimation = requestAnimationFrame(myTaxi.moveUp);
+  } else if (e.keyCode == 40 && moveDownAnimation == false) {
+    moveDownAnimation = requestAnimationFrame(myTaxi.moveDown);
+  } else if (e.keyCode == 37 && moveLeftAnimation == false) {
+    moveLeftAnimation = requestAnimationFrame(myTaxi.moveLeft);
+  } else if (e.keyCode == 39 && moveRightAnimation == false) {
+    moveRightAnimation = requestAnimationFrame(myTaxi.moveRight);
   }
 });
 
@@ -98,18 +105,41 @@ $("body").keydown(function(e) {
 $("body").keyup(function(e) {
   if (e.keyCode == 38) {
     cancelAnimationFrame(moveUpAnimation);
-    // moveUpAnimation = false;
+    moveUpAnimation = false;
   } else if (e.keyCode == 40) {
     cancelAnimationFrame(moveDownAnimation);
-    // moveDownAnimation = false;
+    moveDownAnimation = false;
   } else if (e.keyCode == 37) {
     cancelAnimationFrame(moveLeftAnimation);
-    // moveLeftAnimation = false;
+    moveLeftAnimation = false;
   } else if (e.keyCode == 39) {
     cancelAnimationFrame(moveRightAnimation);
-    // moveRightAnimation = false;
+    moveRightAnimation = false;
   }
 });
+
+// Adjust the speed of the taxi
+$("body").keydown(function(e){
+  if (e.keyCode == 87) {
+    steps++;
+  } else if (e.keyCode == 83) {
+    steps--;
+  }
+  speedSelector.html(steps);
+})
+
+// Mobile button listeners 
+leftBtn.click(function(){
+  if (parseInt(taxi.css("left")) > 0) {
+    taxi.css("left", parseInt(taxi.css("left")) - steps);
+  }
+})
+
+rightBtn.click(function(){
+  if (parseInt(taxi.css("left")) < containerWidth - taxiWidth) {
+    taxi.css("left", parseInt(taxi.css("left")) + steps);
+  }
+})
 
 // Function for creating enemy cars
 function createObstacles() {
@@ -127,7 +157,6 @@ function createObstacles() {
 }
 
 createObstacles();
-var $obstacles = $(".obstacles");
 
 var car1 = $("#car1");
 var car2 = $("#car2");
@@ -139,7 +168,6 @@ function getEnemyRandomX() {
   return random;
 }
 
-
 // Function for moving the obstacles from the top to the bottom
 function car_down(car) {
   var carCurrentTop = parseInt(car.css("top"));
@@ -150,13 +178,11 @@ function car_down(car) {
   car.css("top", carCurrentTop + speed);
 }
 
-var i = 3;
-
 // Function that makes the background Road repeat
 function moveRoad() {
-  roadPosition += i;
+  roadPosition += roadIncrement;
   if (points % 50 == 0) {
-    i += 0.2;
+    roadIncrement += 0.2;
   } 
   container.css({ backgroundPosition: "0 " + roadPosition + "px" });
 }
@@ -170,10 +196,8 @@ function score() {
   }  
 }
 
-
 // stop the game when crash occurs
 var startScoreBoard = window.setInterval(score, 150);
-
 var backgroundRoad = window.setInterval(moveRoad, 10);
 var startObstacles = null;
 
@@ -195,7 +219,7 @@ var stopRoad = function(){
 }
 
 
-// Funciton that checks for collision between taxi and other cars
+// Function that checks for collision between taxi and other cars
 function checkCollision(){
   var positionTaxi = taxi.position();
   var positionCar1 = car1.position();

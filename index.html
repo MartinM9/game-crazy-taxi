@@ -16,10 +16,19 @@
         <img src="game-over.png" alt="Game over">
         <button id="btn-game-over">Play again</button>
     </div>
+    <div id="controls-container">
+        <p>Controls:</p>
+        <img src="arrow-keys.png" alt="Arrow keys">
+        <p>To increase/decrease speed use 'W' or 'S'</p>
+    </div>
     <div id="score-container">
         <h1>Score:</h1>
         <p id="score"></p>
+        <p class="actual-speed">Actual speed:</p>
+        <p class="actual-speed" id="speed"></p>
     </div>
+    <button class="buttons-mobile" id="left"><</button>
+    <button class="buttons-mobile" id="right">></button>
     <div id="container">
         <svg  id="taxi" viewBox="0 0 195 280"  xmlns="http://www.w3.org/2000/svg">
             <g>
@@ -68,7 +77,6 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.js"></script>
-    <!-- <script src="logic.js"></script> -->
     <script src="app.js"></script>
 </body>
 </html>

@@ -7,6 +7,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Faster One', cursive;
+    font-size: 12px;
+}
+
+.buttons-mobile {
+    display: none;
 }
 
 #container {
@@ -20,6 +25,25 @@ body {
     margin: 0 auto;
     background: url('road.svg');
     background-size: contain;
+}
+
+#controls-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 15%;
+    justify-self: flex-start;
+    position: absolute;
+    left: 75%;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#controls-container img {
+    max-width: 100%;
+    margin: 45px 0;
 }
 
 #score-container {
@@ -42,6 +66,10 @@ body {
 #score {
     margin: 30px 0;
     font-size: 3em;
+}
+
+#score-container p {
+    font-size: 2.5em;
 }
 
 #taxi {
@@ -109,4 +137,67 @@ body {
 #btn-game-over:hover {
     background-color: rgba(255, 252, 93);
     padding: 1.5% 4%;
+}
+
+@media (max-width: 450px) {
+    body {
+        background-size: auto;
+        display: block;
+    }
+
+    #container {
+        height: 70%;
+        width: 50vw;
+        top: 25%;
+    }
+
+    #controls-container {
+        display: none;
+    }
+
+    #score-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        background-color: rgba(214, 214, 214, 0.39);
+        justify-self: flex-start;
+        position: absolute;
+        left: 0;
+        height: 15%;
+    }
+
+    #score-container h1 {
+        font-size: 2em;
+
+    }
+    
+    #score {
+        margin: 15px 0;
+        font-size: 2em;
+    }
+    
+    #score-container p {
+        font-size: 1.5em;
+    }
+
+    .actual-speed {
+        display: none;
+    }
+
+    .buttons-mobile {
+        display: block;
+        border: none;
+        padding: 20% 5%;
+        position: absolute;
+        top: 40%;
+        background-color: rgba(255, 252, 93, 0.8);
+        border: none;
+        border-radius: 30px;
+    }
+
+    #right {
+        left: calc(100% - 12%);
+    }
 }
