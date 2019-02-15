@@ -7,6 +7,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Faster One', cursive;
+    font-size: 12px;
 }
 
 .buttons-mobile {
@@ -145,8 +146,8 @@ body {
     }
 
     #container {
-        height: 70vh;
-        width: 40vw;
+        height: 70%;
+        width: 50vw;
         top: 25%;
     }
 
@@ -164,7 +165,7 @@ body {
         justify-self: flex-start;
         position: absolute;
         left: 0;
-        height: 20%;
+        height: 15%;
     }
 
     #score-container h1 {
@@ -197,6 +198,6 @@ body {
     }
 
     #right {
-        left: calc(100% - 10%);
+        left: calc(100% - 12%);
     }
 }
