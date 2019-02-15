@@ -2,6 +2,9 @@ $(window).on("load", function() {
 // Selectors
 var taxi = $("#taxi");
 var container = $("#container");
+var leftBtn = $("#left");
+var rightBtn = $("#right");
+var speedSelector = $("#speed");
 
 // Declaration of variablees
 var speed = 1;
@@ -114,6 +117,29 @@ $("body").keyup(function(e) {
     moveRightAnimation = false;
   }
 });
+
+// Adjust the speed of the taxi
+$("body").keydown(function(e){
+  if (e.keyCode == 87) {
+    steps++;
+  } else if (e.keyCode == 83) {
+    steps--;
+  }
+  speedSelector.html(steps);
+})
+
+// Mobile button listeners 
+leftBtn.click(function(){
+  if (parseInt(taxi.css("left")) > 0) {
+    taxi.css("left", parseInt(taxi.css("left")) - steps);
+  }
+})
+
+rightBtn.click(function(){
+  if (parseInt(taxi.css("left")) < containerWidth - taxiWidth) {
+    taxi.css("left", parseInt(taxi.css("left")) + steps);
+  }
+})
 
 // Function for creating enemy cars
 function createObstacles() {
