@@ -4,7 +4,7 @@ var taxi = $("#taxi");
 var container = $("#container");
 var speed = 1;
 var roadPosition = 0;
-var steps = 20;
+var steps = 10;
 var points = 1;
 var gameOver = false;
 
@@ -165,7 +165,7 @@ function moveRoad() {
 function score() {
   points++;
   $('#score').html(points);
-  if (points % 50 == 0) {
+  if (points % 500 == 0) {
     speed++;
   }  
 }
